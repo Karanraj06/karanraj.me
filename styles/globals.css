@@ -81,9 +81,10 @@
 }
 
 body {
-  background-image: url('/bg-rainbow.png');
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: auto;
+  background-image: url('/bg-rainbow.png'), url('/bg-bottom-rainbow.png');
+  background-position: top center, bottom center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, auto;
   box-shadow: inset 0 -1px 0 0 hsla(0, 0%, 100%, 0.2);
+  min-height: 100vh;
 }

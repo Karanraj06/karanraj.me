@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -6,9 +7,16 @@ import {
   getSkillData,
 } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
+import { Project, Skill } from '@/types';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Card from '@/components/card';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    'CSE undergraduate at IIT Ropar. Passionate about AI, ML and web3',
+};
 
 export default async function Page() {
   const [educationData, projects, skills] = await Promise.all([
@@ -34,7 +42,7 @@ export default async function Page() {
       </div>
       {/* Education Starts */}
       <p className='mb-10 text-2xl font-bold'>Education</p>
-      <div className='grid place-items-center gap-10 p-5 sm:grid-cols-2'>
+      <div className='mb-20 grid place-items-center gap-10 p-5 sm:grid-cols-2'>
         <Image
           src={urlForImage(educationData.image).url()}
           alt='...'
@@ -49,24 +57,23 @@ export default async function Page() {
         </div>
       </div>
       {/* Education Ends */}
-      <hr className='my-20' />
       {/* Projects Start */}
       <p className='my-10 text-2xl font-bold'>Projects</p>
-      {projects.map((project: any) => (
+      {projects.map((project: Project, index: number) => (
         <Card
           key={project.slug}
           imgSrc={urlForImage(project.image).url()}
           title={project.title}
           url={project.slug}
           desc={project.metadescription}
+          className={index === projects.length - 1 ? 'mb-20' : ''}
         />
       ))}
       {/* Projects End */}
-      <hr className='my-20' />
       {/* Skills Start */}
       <p className='my-10 text-2xl font-bold'>Skills</p>
-      <div className='mx-auto my-20 grid max-w-md grid-cols-[repeat(auto-fit,_40px)] place-items-center gap-20'>
-        {skills.map((skill: any, index: number) => (
+      <div className='mx-auto my-20 grid max-w-md grid-cols-[repeat(auto-fit,_40px)] place-items-center justify-center gap-20'>
+        {skills.map((skill: Skill, index: number) => (
           <a href={skill.href} key={index}>
             <Avatar className='grayscale transition-all hover:grayscale-0'>
               <AvatarImage src={urlForImage(skill.image).url()} />

@@ -7,44 +7,52 @@ interface CardProps {
   title: string;
   url?: string;
   desc: string;
+  className?: string;
 }
 
-export default function Card({ imgSrc, title, url, desc }: CardProps) {
+export default function Card({
+  imgSrc,
+  title,
+  url,
+  desc,
+  className,
+}: CardProps) {
   return (
-    <div className='my-10 grid place-items-center gap-10 p-5 sm:grid-cols-2'>
+    <div
+      className={`my-10 grid place-items-center gap-10 p-5 sm:grid-cols-2 ${className}`}
+    >
       <Avatar className='h-24 w-24'>
         <AvatarImage src={imgSrc} />
         <AvatarFallback>...</AvatarFallback>
       </Avatar>
-      <div className='grid place-items-center gap-10'>
-        <div className='flex items-center gap-2'>
-          <div className='text-center text-2xl font-medium'>{title}</div>
-          {url && (
-            <div>
-              <Link
-                href={`\about\\${url}`}
-                className='text-[#0070f3] hover:text-[#52a8ff]'
-              >
-                <svg
-                  data-testid='geist-icon'
-                  fill='none'
-                  height={24}
-                  shapeRendering='geometricPrecision'
-                  stroke='currentColor'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='1.5'
-                  viewBox='0 0 24 24'
-                  width={24}
-                >
-                  <path d='M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71' />
-                  <path d='M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71' />
-                </svg>
-              </Link>
-            </div>
-          )}
-        </div>
+      <div className='grid grid-rows-3'>
+        <div className='text-center text-2xl font-medium'>{title}</div>
         <div className='text-center'>{desc}</div>
+        {url && (
+          <div className='flex items-center justify-center'>
+            <Link
+              href={`\about\\${url}`}
+              className='flex items-center text-[#0070f3] hover:text-[#52a8ff]'
+            >
+              View Project
+              <svg
+                data-testid='geist-icon'
+                fill='none'
+                height={24}
+                shapeRendering='geometricPrecision'
+                stroke='currentColor'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='1.5'
+                viewBox='0 0 24 24'
+                width={18}
+              >
+                <path d='M5 12h14' />
+                <path d='M12 5l7 7-7 7' />
+              </svg>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

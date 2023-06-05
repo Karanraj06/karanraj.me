@@ -1,13 +1,28 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getBlogBySlug, getBlogData } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
+import { Blog } from '@/types';
 import PortableText from 'react-portable-text';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const blog = await getBlogBySlug(params.slug);
+
+  return {
+    title: blog.title,
+    description: blog.metadescription,
+  };
+}
 
 export async function generateStaticParams() {
   const blogs = await getBlogData();
 
-  return blogs.map((blog: any) => ({
+  return blogs.map((blog: Blog) => ({
     slug: blog.slug,
   }));
 }
@@ -54,7 +69,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className='my-10 flex justify-center'>
           <Image
             src={urlForImage(blog.mainImage).url()}
-            alt={blog.mainImage.alt}
+            alt='...'
             className='rounded-md object-cover'
             width={400}
             height={300}
@@ -94,13 +109,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
             children: React.ReactNode;
             href: string;
           }) => (
-            <a href={href} className='text-[#0070f3] hover:text-[#52a8ff]'>
+            <a
+              href={href}
+              target='_blank'
+              className='text-[#0070f3] hover:text-[#52a8ff]'
+            >
               {children}
             </a>
           ),
         }}
       />
-      <hr className='my-20' />
     </div>
   );
 }

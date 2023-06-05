@@ -4,6 +4,8 @@ import { getHomePageData } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 import PortableText from 'react-portable-text';
 
+import { Button } from '@/components/ui/button';
+
 export default async function Page() {
   const homePageData = await getHomePageData();
 
@@ -26,6 +28,7 @@ export default async function Page() {
         dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
         projectId={process.env.NEXT_PUBLIC_SANITY_PROJECTID}
         content={homePageData.content}
+        className='mb-8'
         serializers={{
           h1: (props: any) => (
             <h1 className='my-5 text-2xl font-bold' {...props}></h1>
@@ -55,46 +58,28 @@ export default async function Page() {
             children: React.ReactNode;
             href: string;
           }) => (
-            <a href={href} className='text-[#0070f3] hover:text-[#52a8ff]'>
+            <a
+              href={href}
+              target='_blank'
+              className='text-[#0070f3] hover:text-[#52a8ff]'
+            >
               {children}
             </a>
           ),
         }}
       />
-      <hr className='my-20' />
-      <div className='grid gap-20'>
-        <div className='flex justify-start gap-2'>
-          <div>GitHub</div>
-          <div>
-            <a
-              href='https://github.com/Karanraj06'
-              className='text-[#0070f3] underline hover:text-[#52a8ff]'
-            >
-              @Karanraj06
-            </a>
-          </div>
+      <div className='flex flex-wrap items-center justify-start gap-4'>
+        <div>
+          <a href='https://www.linkedin.com/in/karanraj06/' target='_blank'>
+            <Button size='lg'>View LinkedIn</Button>
+          </a>
         </div>
-        <div className='flex justify-start gap-2'>
-          <div>Gmail</div>
-          <div>
-            <a
-              href='mailto:karanrajmehta06@gmail.com'
-              className='text-[#0070f3] underline hover:text-[#52a8ff]'
-            >
-              karanrajmehta06@gmail.com
-            </a>
-          </div>
-        </div>
-        <div className='flex justify-start gap-2'>
-          <div>LinkedIn</div>
-          <div>
-            <a
-              href='https://www.linkedin.com/in/karanraj06/'
-              className='text-[#0070f3] underline hover:text-[#52a8ff]'
-            >
-              /karanraj06
-            </a>
-          </div>
+        <div>
+          <a href='https://github.com/Karanraj06' target='_blank'>
+            <Button variant='outline' size='lg'>
+              View GitHub
+            </Button>
+          </a>
         </div>
       </div>
     </div>

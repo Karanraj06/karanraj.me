@@ -1,12 +1,16 @@
 import '@/styles/globals.css';
 
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: 'Karanraj Mehta',
-  description: "Hi, I'm Karanraj. This is my personal website.",
+export const metadata: Metadata = {
+  title: {
+    default: 'Karanraj Mehta',
+    template: '%s | Karanraj Mehta',
+  },
+  description: 'Competitive Programmer, Developer and Tech Enthusiast',
 };
 
 export default function RootLayout({

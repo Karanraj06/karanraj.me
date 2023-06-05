@@ -7,17 +7,17 @@ export default async function sitemap() {
   ]);
 
   const projectRoutes = projects.map((project: any) => ({
-    url: `${process.env.NEXT_PUBLIC_WEBSITE}/about/${project.slug}`,
+    url: `https://www.karanraj.me/about/${project.slug}`,
     lastModified: new Date(),
   }));
 
   const blogRoutes = blogs.map((blog: any) => ({
-    url: `${process.env.NEXT_PUBLIC_WEBSITE}/blog/${blog.slug}`,
+    url: `https://www.karanraj.me/blog/${blog.slug}`,
     lastModified: new Date(),
   }));
 
   const routes = ['', '/about', '/blog', '/contact'].map(route => ({
-    url: `${process.env.NEXT_PUBLIC_WEBSITE}${route}`,
+    url: `https://www.karanraj.me${route}`,
     lastModified: new Date(),
   }));
 

@@ -1,8 +1,22 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getProjectBySlug, getProjectData } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 import PortableText from 'react-portable-text';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const project = await getProjectBySlug(params.slug);
+
+  return {
+    title: project.title,
+    description: project.metadescription,
+  };
+}
 
 export async function generateStaticParams() {
   const projects = await getProjectData();
@@ -48,6 +62,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className='shrink-0'>
           <a
             href={project.href}
+            target='_blank'
             className='text-[#0070f3] hover:text-[#52a8ff]'
           >
             <svg
@@ -101,13 +116,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
             children: React.ReactNode;
             href: string;
           }) => (
-            <a href={href} className='text-[#0070f3] hover:text-[#52a8ff]'>
+            <a
+              href={href}
+              target='_blank'
+              className='text-[#0070f3] hover:text-[#52a8ff]'
+            >
               {children}
             </a>
           ),
         }}
       />
-      <hr className='my-20' />
     </div>
   );
 }

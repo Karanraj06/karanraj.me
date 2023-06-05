@@ -1,11 +1,14 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getHomePageData } from '@/sanity/lib/client';
 
 import { ProfileForm } from '@/components/contact';
 
-export default async function Page() {
-  const homePageData = await getHomePageData();
+export const metadata: Metadata = {
+  title: 'Contact',
+  description: 'Get in touch',
+};
 
+export default async function Page() {
   return (
     <div>
       <div className='text-4xl font-extrabold'>Karanraj Mehta</div>
@@ -21,43 +24,35 @@ export default async function Page() {
         </Link>
         <Link href='/contact'>Contact</Link>
       </div>
+      <p className='mb-5 text-2xl font-bold'>Get in touch</p>
+      <p className='mb-10'>
+        Feel free to reach me at{' '}
+        <a
+          href='mailto:karan@karanraj.me'
+          target='_blank'
+          className='bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent'
+        >
+          karan@karanraj.me
+        </a>
+        . You can also find me on{' '}
+        <a
+          href='https://github.com/Karanraj06'
+          target='_blank'
+          className='bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent'
+        >
+          GitHub
+        </a>{' '}
+        and{' '}
+        <a
+          href='https://www.linkedin.com/in/karanraj06/'
+          target='_blank'
+          className='bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent'
+        >
+          LinkedIn
+        </a>
+        .
+      </p>
       <ProfileForm />
-      <hr className='my-20' />
-      <div className='grid gap-20'>
-        <div className='flex justify-start gap-2'>
-          <div>GitHub</div>
-          <div>
-            <a
-              href='https://github.com/Karanraj06'
-              className='text-[#0070f3] underline hover:text-[#52a8ff]'
-            >
-              @Karanraj06
-            </a>
-          </div>
-        </div>
-        <div className='flex justify-start gap-2'>
-          <div>Gmail</div>
-          <div>
-            <a
-              href='mailto:karanrajmehta06@gmail.com'
-              className='text-[#0070f3] underline hover:text-[#52a8ff]'
-            >
-              karanrajmehta06@gmail.com
-            </a>
-          </div>
-        </div>
-        <div className='flex justify-start gap-2'>
-          <div>LinkedIn</div>
-          <div>
-            <a
-              href='https://www.linkedin.com/in/karanraj06/'
-              className='text-[#0070f3] underline hover:text-[#52a8ff]'
-            >
-              /karanraj06
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

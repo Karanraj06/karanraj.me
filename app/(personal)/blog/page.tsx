@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getBlogData } from '@/sanity/lib/client';
+import { Blog } from '@/types';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Blog posts. Discover the latest in web development.',
+};
 
 export default async function Page() {
   const blogData = await getBlogData();
@@ -19,9 +26,11 @@ export default async function Page() {
           Contact
         </Link>
       </div>
-      {/* Blogs Start */}
-      {blogData.map((blog: any) => (
-        <div className='mb-10' key={blog.slug}>
+      {blogData.map((blog: Blog, index: number) => (
+        <div
+          className={index === blogData.length - 1 ? 'mb-20' : 'mb-10'}
+          key={blog.slug}
+        >
           <p className='mb-5 text-2xl font-bold'>{blog.title}</p>
           <div className='my-5 flex gap-10'>
             <div className='grow'>{blog.metadescription}</div>
@@ -59,8 +68,6 @@ export default async function Page() {
           </div>
         </div>
       ))}
-      {/* Blogs End */}
-      <hr className='my-20' />
     </div>
   );
 }

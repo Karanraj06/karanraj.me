@@ -1,3 +1,4 @@
+import { Blog, Education, Home, Project, Skill } from '@/types';
 import { createClient, groq } from 'next-sanity';
 
 import 'server-only';
@@ -11,15 +12,15 @@ export const client = createClient({
   useCdn,
 });
 
-export async function getHomePageData() {
+export async function getHomePageData(): Promise<Home> {
   return await client.fetch(groq`*[_type == "home"][0]`);
 }
 
-export async function getEducationData() {
+export async function getEducationData(): Promise<Education> {
   return await client.fetch(groq`*[_type == "education"][0]`);
 }
 
-export async function getProjectData() {
+export async function getProjectData(): Promise<Project[]> {
   return await client.fetch(groq`*[_type == "project"]{
     title,
     image,
@@ -30,11 +31,11 @@ export async function getProjectData() {
   }`);
 }
 
-export async function getSkillData() {
+export async function getSkillData(): Promise<Skill[]> {
   return await client.fetch(groq`*[_type == "skill"]`);
 }
 
-export async function getProjectBySlug(slug: string) {
+export async function getProjectBySlug(slug: string): Promise<Project> {
   return await client.fetch(
     groq`*[_type == "project" && slug.current == $slug][0]{
       title,
@@ -48,7 +49,7 @@ export async function getProjectBySlug(slug: string) {
   );
 }
 
-export async function getBlogData() {
+export async function getBlogData(): Promise<Blog[]> {
   return await client.fetch(groq`*[_type == 'blog']{
     title,
     metadescription,
@@ -59,7 +60,7 @@ export async function getBlogData() {
   }`);
 }
 
-export async function getBlogBySlug(slug: string) {
+export async function getBlogBySlug(slug: string): Promise<Blog> {
   return await client.fetch(
     groq`*[_type == 'blog' && slug.current == $slug][0]{
       title,
