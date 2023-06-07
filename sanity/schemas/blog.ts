@@ -64,13 +64,19 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-        },
-      ],
+    }),
+    defineField({
+      name: 'alt',
+      title: 'Alt',
+      type: 'string',
+      validation: (Rule) =>
+        Rule.required().error('Please provide an alt text for the image.'),
+    }),
+    defineField({
+      title: 'Paths',
+      name: 'paths',
+      type: 'array',
+      of: [{ type: 'string' }],
     }),
   ],
 });

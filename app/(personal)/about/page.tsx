@@ -74,7 +74,7 @@ export default async function Page() {
       <p className='my-10 text-2xl font-bold'>Skills</p>
       <div className='mx-auto my-20 grid max-w-md grid-cols-[repeat(auto-fit,_40px)] place-items-center justify-center gap-20'>
         {skills.map((skill: Skill, index: number) => (
-          <a href={skill.href} key={index}>
+          <a href={skill.href} target='_blank' key={index}>
             <Avatar className='grayscale transition-all hover:grayscale-0'>
               <AvatarImage src={urlForImage(skill.image).url()} />
               <AvatarFallback>{skill.alt}</AvatarFallback>

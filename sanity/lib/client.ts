@@ -22,12 +22,12 @@ export async function getEducationData(): Promise<Education> {
 
 export async function getProjectData(): Promise<Project[]> {
   return await client.fetch(groq`*[_type == "project"]{
-    title,
+    description,
+    href,
     image,
     metadescription,
-    description,
     'slug': slug.current,
-    href
+    title
   }`);
 }
 
@@ -38,12 +38,12 @@ export async function getSkillData(): Promise<Skill[]> {
 export async function getProjectBySlug(slug: string): Promise<Project> {
   return await client.fetch(
     groq`*[_type == "project" && slug.current == $slug][0]{
-      title,
+      description,
+      href,
       image,
       metadescription,
-      description,
       'slug': slug.current,
-      href
+      title
     }`,
     { slug }
   );
@@ -51,24 +51,26 @@ export async function getProjectBySlug(slug: string): Promise<Project> {
 
 export async function getBlogData(): Promise<Blog[]> {
   return await client.fetch(groq`*[_type == 'blog']{
-    title,
-    metadescription,
-    'slug': slug.current,
-    publishedAt,
+    alt,
     description,
-    mainImage
+    mainImage,
+    metadescription,
+    publishedAt,
+    'slug': slug.current,
+    title
   }`);
 }
 
 export async function getBlogBySlug(slug: string): Promise<Blog> {
   return await client.fetch(
     groq`*[_type == 'blog' && slug.current == $slug][0]{
-      title,
-      metadescription,
-      'slug': slug.current,
-      publishedAt,
+      alt,
       description,
-      mainImage
+      mainImage,
+      metadescription,
+      publishedAt,
+      'slug': slug.current,
+      title
     }`,
     { slug }
   );

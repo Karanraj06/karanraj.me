@@ -16,7 +16,7 @@ export default async function sitemap() {
     lastModified: new Date(),
   }));
 
-  const routes = ['', '/about', '/blog', '/contact'].map(route => ({
+  const routes = ['', '/about', '/blog', '/contact'].map((route) => ({
     url: `https://www.karanraj.me${route}`,
     lastModified: new Date(),
   }));

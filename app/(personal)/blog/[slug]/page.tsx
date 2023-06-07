@@ -69,7 +69,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className='my-10 flex justify-center'>
           <Image
             src={urlForImage(blog.mainImage).url()}
-            alt='...'
+            alt={blog.alt}
             className='rounded-md object-cover'
             width={400}
             height={300}

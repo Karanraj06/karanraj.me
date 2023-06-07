@@ -33,5 +33,11 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      title: 'Paths',
+      name: 'paths',
+      type: 'array',
+      of: [{ type: 'string' }],
+    }),
   ],
 });

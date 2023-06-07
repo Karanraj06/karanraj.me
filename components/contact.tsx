@@ -46,13 +46,13 @@ export function ProfileForm() {
   function onSubmit(data: FormValues) {
     axios
       .post('https://eoo09a7n2ddsof8.m.pipedream.net', data)
-      .then(response => {
+      .then((response) => {
         toast({
           title: 'Your message has been sent',
           description: 'Thanks for getting in touch',
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error:', error.message);
       });
   }

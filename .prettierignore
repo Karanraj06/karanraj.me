@@ -1,10 +1,5 @@
-cache
-.cache
+.next
+node_modules
 package.json
 package-lock.json
 public
-.yarn
-dist
-node_modules
-.next
-build

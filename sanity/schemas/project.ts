@@ -64,10 +64,16 @@ export default defineType({
       title: 'Link',
       name: 'href',
       type: 'url',
-      validation: Rule =>
+      validation: (Rule) =>
         Rule.uri({
           scheme: ['http', 'https', 'mailto', 'tel'],
         }),
+    }),
+    defineField({
+      title: 'Paths',
+      name: 'paths',
+      type: 'array',
+      of: [{ type: 'string' }],
     }),
   ],
 });
