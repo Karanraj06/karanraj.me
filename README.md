@@ -2,6 +2,12 @@
 
 ## Features
 
+- Tailwind CSS and [shadcn/ui](https://ui.shadcn.com/) for styling
+
+- Next.js App Router
+
+- Sanity.io as the CMS
+
 ## To-do List
 
 - [ ] Pagination + Infinite Scrolling for blog posts
