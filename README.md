@@ -2,11 +2,11 @@
 
 ## Features
 
-- Tailwind CSS and [shadcn/ui](https://ui.shadcn.com/) for styling
+- Styled using Tailwind CSS
 
 - Next.js App Router
 
-- Sanity.io as the CMS
+- CMS using Sanity.io
 
 ## To-do List
 
